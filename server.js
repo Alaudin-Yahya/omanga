@@ -16,4 +16,4 @@ if(process.env.NODE_ENV === 'production'){
 }
 const port=5000;
 
-app.listen(port, ()=>console.log(`Server Started at port ${port}`))
+app.listen(process.env.PORT || 5000, ()=>console.log(`Server Started at port ${port}`))
