@@ -1,0 +1,24 @@
+{
+  "name": "omanga",
+  "version": "1.0.0",
+  "description": "Boilerplate for ReactExpress",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix omanga",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix omanga && npm run build --prefix omanga"
+  },
+  "author": "Alaudin Yahya",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
