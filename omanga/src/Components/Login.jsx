@@ -12,7 +12,7 @@ import {
   
 class Login extends Component {
     state = {
-        email:'abcd@gmail.com',password:'1234',res:'',auth:false,token:''
+        email:'abcd@gmail.com',password:'1234',res:'',auth:false,token:'',load:false
       }
     handleChange=({target})=>{
         this.setState({
@@ -20,6 +20,7 @@ class Login extends Component {
         })
     }
     handleSubmit=()=>{
+        this.setState({load:true})
         fetch('api/login',{
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -33,10 +34,10 @@ class Login extends Component {
         .then(response => response.json())
         .then(data => {
             if(!data){
-                this.setState({ res: "Incorrect Email or password"})
+                this.setState({ res: "Incorrect Email or password",load:false})
             }
             else{
-                this.setState({token:data,auth:true})
+                this.setState({token:data,auth:true, load:false})
             }
         });
     }
@@ -64,6 +65,15 @@ class Login extends Component {
                             
                     </form>
                     <button className='btn btn-danger btn-login' onClick={this.handleSubmit}>Submit</button>
+                    <br/><br/>
+                    {
+                        this.state.load?
+                        <div class="">
+                            <div class="loader" id="loader-1" style={{left:"2%"}}></div>
+                        </div>
+                        :<div></div>
+                    }
+                    
                 </div>
             </div>
             {/* <Nav2/> */}
@@ -75,6 +85,7 @@ class Login extends Component {
                     state: { token: this.state.token }
                     }}
                 />
+                
             }
             
          </React.Fragment>
