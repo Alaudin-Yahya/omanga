@@ -12,7 +12,7 @@ import {
   
 class Login extends Component {
     state = {
-        email:'abcd@gmail.com',password:'1234',res:'',auth:false,token:'',load:false
+        email:'',password:'',res:'',auth:false,token:'',load:false
       }
     handleChange=({target})=>{
         this.setState({

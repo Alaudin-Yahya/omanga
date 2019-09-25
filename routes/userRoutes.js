@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 const bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb+srv://alaudinyahya:<yahya123>@cluster0-uhwft.mongodb.net/test?retryWrites=true&w=majority";
+var url = "mongodb+srv://yahya:yahya@cluster0-uhwft.mongodb.net/test?retryWrites=true&w=majority";
 
 
 router.post('/api/signup', (req,res)=>{

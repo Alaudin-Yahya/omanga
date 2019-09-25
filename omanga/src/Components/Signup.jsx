@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Nav from './Nav';
 class Signup extends Component {
     state = {
-        firstname:'Alaudin',
-        lastname:'Yahya',
-        email:'A@gamil',
-        password:'1234',
-        res:[]
+        firstname:'',
+        lastname:'',
+        email:'',
+        password:'',
+        res:[],
+        load:false
     }
     // componentWillMount(){
     //     fetch('/api/signup')
@@ -20,12 +21,9 @@ class Signup extends Component {
         //console.log(this.state.search)
     }
     handlesubmit=()=>{
-        // var data={
-        //     firstname:this.state.firstname,
-        //     lastname:this.state.lastname,
-        //     email:this.state.email,
-        //     password:this.state.password
-        // }
+        this.setState({
+            load:true
+        })
         fetch("/api/signup", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -40,7 +38,7 @@ class Signup extends Component {
             
             )
             .then(response => response.json())
-            .then(data => this.setState({ res: data }));
+            .then(data => this.setState({ res: data, load:false }));
             // .then(
             //     (response)=>{
             //         console.log(response.json())
@@ -87,6 +85,11 @@ class Signup extends Component {
                             </form>
                             <button className='btn btn-info' onClick={this.handlesubmit}>Create Account</button>
                             {console.log(this.state.res)}
+                            {this.state.load?
+                            <div class="">
+                                <div class="loader" id="loader-1" style={{left:"2%"}}></div>
+                            </div>
+                            :<p></p>}
                             </div>
                 </div>
           );
