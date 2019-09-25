@@ -10,7 +10,7 @@ router.post('/api/signup', (req,res)=>{
     //res.send(req.body);ss
     let found = false;
     MongoClient.connect(url,{ useNewUrlParser: true } ,function(err, db) {
-      if (err) throw err;
+      if (err) res.json(err);
       var dbo = db.db("signup");
       dbo.collection("users").find({}, { projection: {  } }).toArray(function(err, result) {
         if (err) throw err;
