@@ -2,15 +2,15 @@ let express = require('express');
 let router = express.Router();
 const bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb+srv://yahya:yahya@cluster0-uhwft.mongodb.net/test?retryWrites=true&w=majority";
-
+//var url = "mongodb+srv://yahya:yahya@cluster0-uhwft.mongodb.net/test?retryWrites=true&w=majority"  ;
+ var url = "mongodb://localhost:27017/db";
 
 router.post('/api/signup', (req,res)=>{
     console.log('user Route')
     //res.send(req.body);ss
     let found = false;
-    MongoClient.connect(process.env.MONGODB_URI,{ useNewUrlParser: true } ,function(err, db) {
-      if (err) res.json(err);
+    MongoClient.connect(url,{ useNewUrlParser: true } ,function(err, db) {
+      if (err) {throw err};
       var dbo = db.db("signup");
       dbo.collection("users").find({}, { projection: {  } }).toArray(function(err, result) {
         if (err) throw err;
